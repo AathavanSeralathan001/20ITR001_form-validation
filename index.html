@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <style>
+        body{
+            background-image: url('https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg?t=st=1650820059~exp=1650820659~hmac=7b63b3189c81a1546f56758240b9fd4142a3ecf2a4a895c644a39b5a5d3cca99&w=900');
+            background-repeat: no-repeat;
+            background-size:100% 100%;
+            
+        }
+    </style>
+</head>
+<body class="container">
+    <h2 class="mt-5 d-flex justify-content-center" ><i>EVENT REGISTRATION FORM</i></h2>
+    <div class="d-flex justify-content-center mt-5">
+
+    <table class="table table-hover mx-5">
+        <form action="./submit.html" name="myform" method="get" >
+        <tr>
+            <td><div class="form-label"> Enter your name:</div> </td>
+            <td><input type="text" class="mx-5" name="name" required oninput="namef()" onfocus="this.value=''"></td>
+            <td id="n"></td>
+        </tr>
+        <!-- <tr align="center">
+<td id="n"></td>
+        </tr> -->
+
+        <tr>
+            <td><div class="form-label"> Enter your maid id:</div> </td>
+            <td><input type="email"  class="mx-5" name="eid" required oninput="emailf()"></td>
+            <td id="mail"></td>
+        </tr>
+    
+
+        <tr>
+            <td><div class="form-label"> Enter your Mobile number:</div> </td>
+            <td><input type="tel" name="phno"  class="mx-5" oninput="phonef()"></td>
+            <td id="p"></td>
+        </tr>
+      
+        <tr>
+            <td><div class="form-label"></div> Enter your Username:</div> </td>
+            <td><input type="text" name="uname" id="" class="mx-5" required oninput=" usernamef()"></td>
+            <td id="u"></td>
+        </tr>
+        
+        <tr>
+            <td><div class="form-label"></div> Enter your Password:</div> </td>
+            <td><input type="password" name="pword" id="" class="mx-5" required oninput="pw()"></td>
+            <td id="p2"></td>
+        </tr>
+       
+
+        <tr>
+            <td><div class="form-label"></div> Select your gender:</div> </td>
+            <td>
+            <input type="radio" name="gender" id="rd1" oninput="radio()">Male <br>
+            <input type="radio" name="gender" id="rd2" oninput="radio()">Female <br>
+            <input type="radio" name="gender" id="rd3" oninput="radio()">Others <br>
+            </td>
+            <td id="r1">            </td>
+        </tr>
+<tr>
+    <td> <div class="form-label"></div> Select Events:</div></td>
+        <td>
+            <input type="checkbox" class="form-check-input" id="cbox4"  oninput="check()">Coding
+            <br>
+            <input type="checkbox" class="form-check-input" id="cbox1"  oninput="check()">Debugging <br>
+            <input type="checkbox" class="form-check-input" id="cbox2" oninput="check()">Paper Presentation <br>
+            <input type="checkbox" class="form-check-input" id="cbox3" oninput="check()">Quiz
+            <td id="c" style="text-align: center;">
+
+        </td>
+ </tr> 
+ <tr>
+     <td>
+         <div class="text-center">
+          <input type="submit"  class=" btn  btn-lg btn-warning" value="SUBMIT">
+          </div>
+    </td>
+       
+ </tr> 
+
+    </form>
+    </table>
+
+</div>
+
+
+<script>
+
+function namef(){
+                var sname=document.myform.name.value;
+              let regex=/^[A-z\.]*$/
+                var result=regex.test(sname);
+                console.log(result)
+                if(sname.length==0){
+                    document.getElementById("n").innerHTML="Don't leave the field empty ❗";
+                    return false;
+                }
+                if(result==false)
+                {
+                    document.getElementById("n").innerHTML="Only Letters & '.' allowed ❗";
+                    return false;
+                }
+                else{
+                    document.getElementById("n").innerHTML="Correct ✔";
+                    return true;
+                }
+                
+        }
+        function emailf(){
+            var mail1=document.myform.eid.value;
+           let regex= /^[a-z 0-9\.\-\_]*@[a-z]*\.[a-z]{2,4}$/;
+            var result1=regex.test(mail1);
+            console.log(result1)
+            if(result1==false)
+            {
+                document.getElementById('mail').innerHTML="Invalid Mail Id ❌";
+                return false;
+            }
+            else
+            {
+                document.getElementById('mail').innerHTML="Correct ✔";
+                return true;
+            }     
+        }
+        function phonef(){
+            var ph1=document.myform.phno.value;
+            let regex=/^[1-9]{1}[0-9]{9}$/;
+            var result2=regex.test(ph1);
+            console.log(result2)
+            if(result2==false){
+                document.getElementById('p').innerHTML="Only 10 digits allowed and first digit can't be 0 ❗";
+                return false;
+            }
+            else{
+                document.getElementById('p').innerHTML="Correct ✔";
+                return true;
+            }
+        }
+        function usernamef(){
+            var un=document.myform.uname.value;
+            let regex=/^[a-z]{8,10}[0-9]{1}[!.@#$%^&*?~,`]{1}$/;
+            var result3=regex.test(un);
+            console.log(result3)
+            if(result3==false){
+                document.getElementById('u').innerHTML="Invalid ❌";
+                return false;
+            }
+            else{
+                document.getElementById('u').innerHTML="Correct ✔";
+                return true;
+            }
+        }
+        function pw(){
+            var passw=document.myform.pword.value;
+            let regex=/^[A-z]{5}[0-9]{3}$/
+            var result4=regex.test(passw);
+            console.log(result4)
+            if(result4==false){
+                document.getElementById('p2').innerHTML="Invalid ❌ Hint: 5 letters & 3 numbers";
+                return false;
+            }
+            else{
+                document.getElementById('p2').innerHTML="Correct ✔";
+                return true;
+            }
+        }
+        function radio(){
+            var radio1=document.getElementById('rd1').checked;
+            var radio2=document.getElementById('rd2').checked;
+            var radio3=document.getElementById('rd3').checked;
+            
+            if(radio1==true || radio2==true|| radio3==true)
+            {
+                document.getElementById('r1').innerHTML="Radio button is selected 🔅"
+            }
+        }
+        function check(){
+            var checkbox=document.getElementById('cbox4').checked;
+            var checkbox1=document.getElementById('cbox1').checked;
+            var checkbox2=document.getElementById('cbox2').checked;
+            var checkbox3=document.getElementById('cbox3').checked;
+
+            if(checkbox==true || checkbox1==true || checkbox2==true || checkbox3==true)
+            {
+                
+                document.getElementById('c').innerHTML="Checkbox is Checked ✔";
+            }
+            else{
+                document.getElementById('c').innerHTML="Checkbox is not checked ❌";
+            }
+        }
+
+
+</script>
+</body>
+</html>
